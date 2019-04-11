@@ -15,5 +15,5 @@ var showTable = function () {
         console.log('\n' + this.table.toString());
     };
 }
-module.exports = showTable;
 
+module.exports = showTable;
