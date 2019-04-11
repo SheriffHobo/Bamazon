@@ -1,7 +1,7 @@
 var mysql = require('mysql');
 var Table = require('cli-table2');
 var inquirer = require('inquirer');
-var showTable = require('./tableCreator.js');
+var showTable = require('./tableBuilder.js');
 
 // Connect to the DB
 var connection = mysql.createConnection({
@@ -27,7 +27,7 @@ var displayForUser = function () {
 		display.displayTable(results);
 		purchaseItem();
 	});
-}
+};
 
 // Asks user for item and quantity
 var purchaseItem = function () {
@@ -40,14 +40,14 @@ var purchaseItem = function () {
 	}, {
 		name: "quantity",
 		type: "input",
-		message: "How many woukd you like to purchase?",
+		message: "How many would you like to purchase?",
 
 		// Pings DB for item details
 	}]).then(function (answer) {
 		connection.query('SELECT item, catagory, price, stock FROM products WHERE ?', {
 			id: answer.id
 		}, function (err, res) {
-			console.log('\nYou\'ve selected ' + answer.quantity + ' ' + res[0].item + ' ' + res[0].catagory + ' at $' + res[0].price + ' each');
+			console.log('\nYou\'ve selected ' + answer.quantity + ' ' + res[0].item + ' at $' + res[0].price + ' each');
 
 			// purchasePrompt(); or something to present more questions. Refer to line 98
 			// If YES, continue with purchase flow
@@ -70,8 +70,8 @@ var purchaseItem = function () {
 				// Order incomplete
 				console.log('\nSorry, not enough inventory for fulfill your order.\n');
 				customerPrompt();
-			}
-		})
+			};
+		});
 	});
 };
 
@@ -91,8 +91,8 @@ var customerPrompt = function () {
 			case 'No':
 				connection.end();
 				break;
-		}
-	})
+		};
+	});
 };
 
 var purchasePrompt = function () {
@@ -110,8 +110,8 @@ var purchasePrompt = function () {
 			case 'No':
 				purchaseItem(); 
 				break;
-		}
-	})
+		};
+	});
 };
 
 // Starts app
