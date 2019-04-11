@@ -50,7 +50,7 @@ var purchaseItem = function () {
 			console.log('\nYou\'ve selected ' + answer.quantity + ' ' + res[0].item + ' ' + res[0].catagory + ' at $' + res[0].price + ' each');
 
 			// purchasePrompt(); or something to present more questions. Refer to line 98
-			// If YES, continue with ourchase flow
+			// If YES, continue with purchase flow
 
 			if (res[0].stock >= answer.quantity) {
 				//If enough inventory to complete order, process order by updating database inventory and notifying customer that order is complete. 
@@ -104,7 +104,7 @@ var purchasePrompt = function () {
 	}).then(function (answer) {
 		switch (answer.action) {
 			case 'Yes':
-				// Continue with purchase flow
+				// Continue with purchase flow, line 55
 				break;
 
 			case 'No':
